@@ -1,0 +1,4 @@
+product_id,product_name,category,brand,price
+101,Laptop,Electronics,Dell,1200.00
+102,Smartphone,Electronics,Samsung,800.00
+103,Tablet,Electronics,Apple,600.00

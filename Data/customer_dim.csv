@@ -1,0 +1,8 @@
+customer_id,customer_name,email,phone,gender,birthdate
+1,John Doe,john@example.com,1234567890,Male,1990-01-01
+2,Jane Smith,jane@example.com,2345678901,Female,1992-02-02
+3,Bob Johnson,bob@example.com,3456789012,Male,1988-03-03
+4,Alice Brown,alice@example.com,4567890123,Female,1995-04-04
+5,John Doe,john@example.com,1234567890,Male,1990-01-01
+6,Charlie King,charlie@example.com,5678901234,Male,1991-05-05
+

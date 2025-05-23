@@ -104,31 +104,58 @@ def classify_by_type_by_foreign_key_ratio(table_schema):
         "Dimension Table" : dim_table
     }
 
+def classify_by_data_type_analysis(tables):
+    fact, dim = [], []
+    for table in tables:
+        cnt_data_type_int_decimal = 0
+        cursor.execute(f'Describe {table};')
+        value = cursor.fetchall()
+        for row in value:
+            if row[1] == 'int' or row[1] == 'decimal':
+                cnt_data_type_int_decimal += 1
+        
+        print(f'For table {table}: cnt = {cnt_data_type_int_decimal}')
+        if cnt_data_type_int_decimal >= 3:
+            fact.append(table)
+            print("It is Fact Table")
+        else:
+            dim.append(table)
+            print("It is Dimension Table")
+    
+    return {
+        "Fact Tables": fact,
+        "Dimension Tables": dim
+    }
+
+
 
 table_schemas = get_tables_and_columns(cursor)
 # for key, val in table_schemas.items():
 #     print(key, val)
 
-# table_types = classify_by_naming_convention(list(table_schemas.keys()))
-# for key, val in table_types.items():
-#     print(key, val)
+table_types = classify_by_naming_convention(list(table_schemas.keys()))
+for key, val in table_types.items():
+    print(key, val)
 
-# print('--------------------------------------------------------')
+print('--------------------------------------------------------')
 
-# table_types_by_keywords = classify_by_column_names(table_schemas)
-# for key, val in table_types_by_keywords.items():
-#     print(key, val)
+table_types_by_keywords = classify_by_column_names(table_schemas)
+for key, val in table_types_by_keywords.items():
+    print(key, val)
 
-# print('--------------------------------------------------------')
+print('--------------------------------------------------------')
 
 table_type_by_foreign_key_ratio = classify_by_type_by_foreign_key_ratio(table_schemas)
 for key, val in table_type_by_foreign_key_ratio.items():
     print(key, val)
 
+print('--------------------------------------------------------')
 
+table_type_by_data_type_analysis = classify_by_data_type_analysis(list(table_schemas.keys()))
+for key, val in table_type_by_data_type_analysis.items():
+    print(key, val)
 
-
-
+# print('--------------------------------------------------------')
 
 
 
